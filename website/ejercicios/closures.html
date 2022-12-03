@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // This is accesible from the browser's console
+        // const counter = {
+        //     count: 3
+        // }
+
+        // console.log(counter.count)
+
+        function makeCounter(n){
+            let count = n
+
+            return {
+                increase: function(){
+                    count++
+                },
+                decrease: function(){
+                    count--
+                },
+                getCount: function(){
+                    return count
+                }
+            }
+        }
+        let counter = makeCounter(7)
+        console.log(counter.getCount())
+        counter.increase()
+        console.log(counter.getCount())
+        counter.decrease()
+        counter.decrease()
+        counter.decrease()
+        console.log(counter.getCount())
+    </script>
+</body>
+</html>
