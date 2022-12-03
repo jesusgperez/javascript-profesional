@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/ejercicios">Go back</a>
+    <p><em>Abre la consola</em></p>
+    <ul>
+        <li><button class="call-to-action">Aprender</button></li>
+        <li><button class="call-to-action">Aprender Más</button></li>
+        <li><button class="call-to-action">¡Nunca parar de aprender!</button></li>
+    </ul>
+    <script>
+        //The call method stablishes the default this to be used in the funtion
+        function saludar(){
+            console.log(`Hola soy ${this.name} ${this.apellido}`)
+        }
+        const person = {
+            name: "Jesus",
+            apellido: "Perez"
+        }
+        saludar.call(person)
+
+        //Se le pueden enviar argumentos a la función
+        function caminar(metros, direccion){
+            console.log(`${this.name} camina ${metros} metros hacia ${direccion}`)
+        }
+        caminar.call(person, 400, "norte")
+
+        //Es similar que el call, pero los argumentos pasan por una lista
+        const valores = [800, "noreste"]
+        caminar.apply(person, valores)
+
+        //EL bind retorna una función para ejecutar
+        const daniel = {
+            name: "Daniel",
+            apellido: "Sánchez"
+        }
+        const danielSaluda = saludar.bind(daniel)
+        danielSaluda()
+
+        const danielCamina = caminar.bind(daniel, 2000, "sur")
+        danielCamina()
+
+        //getElementsByClassName no es un arreglo, es una node-list -> forEach no funciona
+        //Se puede transformar en una lista con el rest operator ..., pero la línea anterior hay que cerrarla con ;
+        const buttons = document.getElementsByClassName('call-to-action');
+        [...buttons].forEach(button => {
+            button.onclick = () => alert('Nunca pares de aprender!')
+        })
+
+        // Array.prototype.forEach.call(buttons, button => {
+        //     button.onclick = () => alert('Nunca pares de aprender!')
+        // })
+    </script>
+</body>
+</html>
