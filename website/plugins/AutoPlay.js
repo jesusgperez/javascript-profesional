@@ -1,7 +1,10 @@
 function AutoPlay(){}
 
 AutoPlay.prototype.run = function(player) {
-    player.mute()
+    if (!player.muted){
+        //El setter funciona como un atributo, no como una función
+        player.muted = true
+    }
     player.play()
 }
 
