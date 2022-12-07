@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function* simpleGenerator() {
+            console.log('Generator Start')
+            yield 1
+            yield 2
+            yield 3
+            console.log('Generator End')
+        }
+
+        const gen = simpleGenerator()
+
+        function* idMaker(){
+            let id = 1
+            while(true){
+                yield id
+                id++
+            }
+        }
+
+        const gen2 = idMaker()
+
+        function* idMakerReset(){
+            let id = 1
+            let reset
+            while(true){
+                reset = yield id
+                if (reset){
+                    id = 1
+                } else {
+                    id++
+                }
+            }
+        }
+
+        const gen3 = idMakerReset()
+
+        function* fibonacci() {
+            let a = 1
+            let b = 1
+            while(true) {
+                const nextNumber = a + b
+                a = b
+                b = nextNumber
+                yield nextNumber
+            }
+        }
+
+        const gen_fib = fibonacci()
+    </script>
+</body>
+</html>
